@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>銘記庭園餐廳 - 金味越南</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        /* --- 核心色票 (Jade & Gold Theme) --- */
+        :root {
+            --jade-dark: #0f281e;   /* 深翡翠綠底色 */
+            --jade-light: #1a4231;  /* 亮綠色塊 */
+            --gold: #d4af37;        /* 奢華金 */
+            --gold-dim: #8a7224;    /* 暗金 */
+            --cream: #f2e6d6;       /* 米白字體 */
+            --red-accent: #800000;  /* 點綴紅 */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--jade-dark);
+            color: var(--cream);
+            font-family: 'Playfair Display', 'Noto Serif TC', serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* 裝飾背景：模擬絲綢紋理 */
+        .bg-pattern {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: repeating-linear-gradient(45deg, rgba(212, 175, 55, 0.03) 0px, rgba(212, 175, 55, 0.03) 1px, transparent 1px, transparent 10px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- 導航列 --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(15, 40, 30, 0.9), transparent);
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 1rem;
+            border: 1px solid var(--gold);
+            padding: 8px 20px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .back-btn:hover {
+            background: var(--gold);
+            color: var(--jade-dark);
+        }
+
+        /* --- 1. 首屏 Hero Section (使用餐廳外觀/內裝圖) --- */
+        header.hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 5px solid var(--gold);
+        }
+
+        .hero-img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            /* 圖片路徑 1 */
+            z-index: -1;
+            filter: brightness(0.6);
+            animation: zoomIn 20s infinite alternate;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            text-align: center;
+            border: 2px solid var(--gold);
+            padding: 3rem 5rem;
+            background: rgba(15, 40, 30, 0.85); /* 半透明綠底 */
+            backdrop-filter: blur(5px);
+            position: relative;
+            max-width: 800px;
+        }
+
+        /* Chinoiserie 邊角裝飾 */
+        .corner {
+            position: absolute;
+            width: 30px; height: 30px;
+            border: 3px solid var(--gold);
+            transition: 0.5s;
+        }
+        .tl { top: -10px; left: -10px; border-right: none; border-bottom: none; }
+        .tr { top: -10px; right: -10px; border-left: none; border-bottom: none; }
+        .bl { bottom: -10px; left: -10px; border-right: none; border-top: none; }
+        .br { bottom: -10px; right: -10px; border-left: none; border-top: none; }
+
+        .hero-content:hover .corner {
+            width: 50px; height: 50px; /* 懸停時邊框延伸 */
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            letter-spacing: 5px;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            font-style: italic;
+            border-top: 1px solid var(--gold-dim);
+            padding-top: 1rem;
+        }
+
+        /* --- 2. 招牌菜介紹區 (Foody 雜誌風排版) --- */
+        .signature-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 80vh;
+            align-items: center;
+            position: relative;
+        }
+
+        .text-box {
+            padding: 5rem;
+            background-color: var(--jade-dark);
+            position: relative;
+            z-index: 2;
+        }
+
+        .dish-title {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .dish-desc {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            text-align: justify;
+        }
+
+        .highlight {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-left: 3px solid var(--red-accent);
+            padding-left: 15px;
+            margin-top: 2rem;
+            display: block;
+        }
+
+        .image-wrapper {
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            /* 金色邊框分隔線 */
+            border-left: 3px double var(--gold); 
+        }
+
+        .signature-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* 圖片路徑 2 */
+            transition: transform 0.5s;
+        }
+        
+        .signature-section:hover .signature-img {
+            transform: scale(1.05);
+        }
+
+        /* 標籤貼紙效果 */
+        .sticker {
+            position: absolute;
+            top: 30px; right: 30px;
+            background-color: var(--red-accent);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        /* --- 3. 特色菜 Close-up (視覺衝擊區) --- */
+        .closeup-section {
+            position: relative;
+            padding: 8rem 2rem;
+            text-align: center;
+            background-color: #000;
+        }
+
+        .closeup-img-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            border: 1px solid var(--gold);
+            padding: 10px; /* 雙層框效果 */
+        }
+
+        .closeup-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid var(--gold);
+            /* 圖片路徑 3 */
+            filter: contrast(1.2);
+        }
+
+        .overlay-text {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--jade-light);
+            padding: 20px 40px;
+            border: 2px solid var(--gold);
+            width: 80%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .overlay-text h3 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--gold);
+            background-color: #0a1a14;
+            color: #888;
+        }
+
+        /* RWD 調整 */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .hero-content { padding: 2rem; width: 90%; }
+            .signature-section { grid-template-columns: 1fr; }
+            .text-box { padding: 3rem 2rem; order: 2; }
+            .image-wrapper { height: 400px; order: 1; border-left: none; border-bottom: 3px double var(--gold); }
+            .overlay-text { width: 95%; bottom: -50px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-pattern"></div>
+
+    <nav>
+        <span style="color:var(--gold); font-weight:bold; font-size:1.2rem;">MING CHI</span>
+        <a href="index.html" class="back-btn">← Back to Menu</a>
+    </nav>
+
+    <header class="hero">
+        <img src="images/mingchi_ext.jpg" alt="銘記庭園內裝" class="hero-img">
+        
+        <div class="hero-content">
+            <div class="corner tl"></div><div class="corner tr"></div>
+            <div class="corner bl"></div><div class="corner br"></div>
+            <h1>銘記庭園</h1>
+            <div class="subtitle">Ming Chi Country Garden Restaurant</div>
+        </div>
+    </header>
+
+    <section class="signature-section">
+        <div class="text-box">
+            <h2 class="dish-title">皇室御用．順化宮廷宴</h2>
+            <p class="dish-desc">
+                不同於街邊河粉的隨性，銘記呈現的是越南中部的細膩與優雅。主廚堅持使用空運香料，重現順化皇城的正宗風味。
+                濃郁的湯頭熬製超過十二小時，搭配特製的米線與新鮮香草，每一口都是對歷史的致敬。
+            </p>
+            <p class="dish-desc">
+                在這裡，用餐不只是味覺的滿足，更是視覺與嗅覺的極致饗宴。極繁主義的擺盤美學，將五色五味的哲學發揮得淋漓盡致。
+            </p>
+            <span class="highlight">必嚐推薦：宮廷煎餅 / 鮮蝦豬肉生春捲 / 咖哩雞佐法國麵包</span>
+        </div>
+        
+        <div class="image-wrapper">
+            <div class="sticker">SIGNATURE DISH</div>
+            <img src="images/mingchi_dish.jpg" alt="銘記招牌菜" class="signature-img">
+        </div>
+    </section>
+
+    <section class="closeup-section">
+        <div class="closeup-img-container">
+            <img src="images/mingchi_closeup.jpg" alt="美味特寫" class="closeup-img">
+            
+            <div class="overlay-text">
+                <h3>極致細節 The Texture</h3>
+                <p>感受酥脆麵衣與鮮嫩內餡的完美交響，醬汁的光澤在燈光下閃耀如金。</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>新北市汐止區康寧街536-1號 | 02-2692-7015</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">Copyright © 2025 Vietnam Gold Selection.</p>
+    </footer>
+
+</body>
+</html>

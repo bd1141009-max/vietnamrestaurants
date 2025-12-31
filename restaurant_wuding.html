@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>武鼎越豐 - 金味越南</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        :root {
+            --lacquer-black: #050505;
+            --rich-gold: #e6b800;
+            --text-gray: #ccc;
+            --accent-red: #8a0000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--lacquer-black);
+            color: var(--text-gray);
+            font-family: 'Playfair Display', 'Noto Serif TC', serif;
+            overflow-x: hidden;
+        }
+
+        /* 背景：金色散點，模擬灑金漆藝 */
+        .bg-dust {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(var(--rich-gold) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.1;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        nav {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5,5,5,0.9);
+            border-bottom: 1px solid var(--rich-gold);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+        .back-link { color: var(--rich-gold); text-decoration: none; border: 1px solid var(--rich-gold); padding: 5px 15px; }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-img {
+            position: absolute;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            /* 請放入 images/wuding_ext.jpg */
+            filter: brightness(0.5) contrast(1.2);
+            z-index: -1;
+        }
+        .hero-title-box {
+            border: 3px solid var(--rich-gold);
+            padding: 3rem 5rem;
+            background: rgba(0,0,0,0.8);
+            box-shadow: 0 0 20px rgba(230, 184, 0, 0.2);
+            text-align: center;
+        }
+        h1 { font-size: 4rem; color: var(--rich-gold); margin-bottom: 0.5rem; }
+        .hero-subtitle { font-style: italic; letter-spacing: 2px; color: #fff; }
+
+        /* Content - Zigzag Layout */
+        .section {
+            padding: 6rem 10%;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+        .text-content { flex: 1; }
+        .img-content { flex: 1; position: relative; }
+        
+        /* 圖片裝飾框：模擬中式窗花 */
+        .img-frame {
+            position: relative;
+            padding: 10px;
+            border: 2px solid var(--rich-gold);
+            /* 切角效果 */
+            clip-path: polygon(
+                20px 0, 100% 0, 100% calc(100% - 20px), 
+                calc(100% - 20px) 100%, 0 100%, 0 20px
+            );
+        }
+        .dish-img {
+            width: 100%; display: block;
+            transition: transform 0.5s;
+        }
+        .img-frame:hover .dish-img { transform: scale(1.05); }
+
+        h2 { font-size: 2.5rem; color: var(--rich-gold); margin-bottom: 1.5rem; border-left: 5px solid var(--accent-red); padding-left: 20px; }
+        p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; text-align: justify; }
+
+        /* Closeup - Full Width */
+        .closeup {
+            height: 80vh;
+            position: relative;
+            margin-top: 4rem;
+            overflow: hidden;
+        }
+        .closeup-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            /* 請放入 images/wuding_closeup.jpg */
+        }
+        .closeup-text {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            background: linear-gradient(to top, #000, transparent);
+            padding: 4rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .section { flex-direction: column; padding: 4rem 5%; }
+            h1 { font-size: 2.5rem; }
+            .hero-title-box { padding: 2rem; width: 90%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-dust"></div>
+    <nav>
+        <span style="color:white; font-weight:bold;">WU DING</span>
+        <a href="index.html" class="back-link">← MENU</a>
+    </nav>
+
+    <header class="hero">
+        <img src="images/wuding_ext.jpg" alt="武鼎外觀" class="hero-img">
+        <div class="hero-title-box">
+            <h1>武鼎越豐</h1>
+            <div class="hero-subtitle">The Taste of Vibrant Night</div>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="img-content">
+            <div class="img-frame">
+                <img src="images/wuding_dish.jpg" alt="泰越酸辣河粉" class="dish-img">
+            </div>
+        </div>
+        <div class="text-content">
+            <h2>泰越交融的辛香交響</h2>
+            <p>座落於台北信義區的繁華地帶，武鼎越豐以其獨特的泰越融合風味征服了無數饕客。這裡的湯頭不只甘甜，更帶著泰式的酸辣勁道，彷彿夜晚的霓虹般強烈而迷人。</p>
+            <p>招牌的酸辣海鮮河粉，湯色紅艷誘人，香茅與檸檬葉的氣息在熱氣中爆發。極繁主義的豐富配料：鮮蝦、蛤蜊、肉片鋪滿碗面，是一場視覺與味覺的豐盛慶典。</p>
+            <p style="color:var(--rich-gold)">★ 推薦：越式酸辣海鮮河粉、泰式涼拌木瓜。</p>
+        </div>
+    </section>
+
+    <div class="closeup">
+        <img src="images/wuding_closeup.jpg" alt="食材特寫" class="closeup-img">
+        <div class="closeup-text">
+            <h3 style="font-size: 2rem; color: var(--rich-gold);">濃烈之美</h3>
+            <p>每一匙湯，都是對味蕾的極致挑逗。</p>
+        </div>
+    </div>
+
+</body>
+</html>

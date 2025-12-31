@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>誠記越南麵食館 - 金味越南</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        /* --- 核心色票 (Crimson & Gold Theme) --- */
+        :root {
+            --crimson-dark: #3a0e0e;   /* 深胭脂紅底色 */
+            --crimson-vibrant: #7a1216; /* 亮紅強調色 */
+            --gold: #e5c15d;           /* 復古金 */
+            --gold-dim: #947c3c;       /* 暗金 */
+            --cream: #fcebd5;          /* 暖米白字體 */
+            --black-ink: #050202;      /* 水墨黑 */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--crimson-dark);
+            color: var(--cream);
+            font-family: 'Playfair Display', 'Noto Serif TC', serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* 裝飾背景：中式窗花格紋 */
+        .bg-pattern {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(30deg, var(--crimson-vibrant) 12%, transparent 12.5%, transparent 87%, var(--crimson-vibrant) 87.5%, var(--crimson-vibrant)),
+                linear-gradient(150deg, var(--crimson-vibrant) 12%, transparent 12.5%, transparent 87%, var(--crimson-vibrant) 87.5%, var(--crimson-vibrant)),
+                linear-gradient(30deg, var(--crimson-vibrant) 12%, transparent 12.5%, transparent 87%, var(--crimson-vibrant) 87.5%, var(--crimson-vibrant)),
+                linear-gradient(150deg, var(--crimson-vibrant) 12%, transparent 12.5%, transparent 87%, var(--crimson-vibrant) 87.5%, var(--crimson-vibrant)),
+                linear-gradient(60deg, rgba(229, 193, 93, 0.05) 25%, transparent 25.5%, transparent 75%, rgba(229, 193, 93, 0.05) 75%, rgba(229, 193, 93, 0.05)),
+                linear-gradient(60deg, rgba(229, 193, 93, 0.05) 25%, transparent 25.5%, transparent 75%, rgba(229, 193, 93, 0.05) 75%, rgba(229, 193, 93, 0.05));
+            background-size: 80px 140px;
+            background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+            opacity: 0.1;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- 導航列 --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(58, 14, 14, 0.95), transparent);
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 1rem;
+            border: 1px solid var(--gold);
+            padding: 8px 20px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .back-btn:hover {
+            background: var(--gold);
+            color: var(--crimson-dark);
+        }
+
+        /* --- 1. 首屏 Hero Section --- */
+        header.hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 5px solid var(--gold);
+        }
+
+        .hero-img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            /* 圖片路徑 1 */
+            z-index: -1;
+            filter: brightness(0.6) sepia(0.2);
+        }
+
+        .hero-content {
+            text-align: center;
+            border: 4px double var(--gold);
+            padding: 4rem 3rem;
+            background: rgba(5, 2, 2, 0.7); /* 黑底凸顯紅金 */
+            backdrop-filter: blur(3px);
+            position: relative;
+            max-width: 800px;
+            box-shadow: 0 0 50px rgba(122, 18, 22, 0.4);
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: #fff;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            border-top: 1px solid var(--crimson-vibrant);
+            padding-top: 15px;
+            display: inline-block;
+        }
+
+        /* --- 2. 招牌菜介紹區 (交錯佈局) --- */
+        .signature-section {
+            display: flex;
+            flex-direction: row-reverse; /* 圖片在左，文字在右 (與上一頁相反，增加變化) */
+            min-height: 80vh;
+            align-items: stretch;
+            position: relative;
+            background-color: var(--black-ink);
+        }
+
+        .text-box {
+            flex: 1;
+            padding: 6rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* 浮水印背景字 */
+        .watermark {
+            position: absolute;
+            font-size: 10rem;
+            opacity: 0.05;
+            color: var(--gold);
+            top: 0; right: 0;
+            font-family: 'Playfair Display', serif;
+            pointer-events: none;
+            line-height: 0.8;
+            overflow: hidden;
+        }
+
+        .dish-title {
+            font-size: 3rem;
+            color: var(--crimson-vibrant);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-shadow: 1px 1px 0 var(--gold-dim);
+        }
+
+        .dish-desc {
+            font-size: 1.15rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            border: 1px solid var(--gold);
+            padding: 20px;
+            margin-top: 2rem;
+            background: rgba(122, 18, 22, 0.1);
+        }
+
+        .highlight-title {
+            color: var(--gold);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .image-wrapper {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            border-right: 3px solid var(--gold);
+        }
+
+        .signature-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* 圖片路徑 2 */
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .signature-section:hover .signature-img {
+            transform: scale(1.1);
+        }
+
+        /* 標籤設計 - 模擬郵戳 */
+        .stamp {
+            position: absolute;
+            bottom: 40px; left: 40px;
+            width: 120px; height: 120px;
+            border: 3px dashed var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--gold);
+            font-weight: bold;
+            transform: rotate(-15deg);
+            font-size: 1.2rem;
+            background: rgba(0,0,0,0.6);
+            z-index: 10;
+        }
+
+        /* --- 3. 特色菜 Close-up (滿版視差) --- */
+        .closeup-section {
+            position: relative;
+            height: 70vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 120%;
+            /* 圖片路徑 3 */
+            background-image: url('images/thanhky_closeup.jpg'); 
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            filter: brightness(0.8);
+            /* 簡單視差效果模擬 */
+            transform: translateY(-10%); 
+        }
+
+        .center-card {
+            background: rgba(5, 2, 2, 0.85);
+            padding: 3rem;
+            border-top: 5px solid var(--crimson-vibrant);
+            border-bottom: 5px solid var(--crimson-vibrant);
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        .center-card h3 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .center-card p {
+            color: #ddd;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            background-color: #000;
+            color: var(--gold-dim);
+            border-top: 1px solid var(--crimson-vibrant);
+        }
+
+        /* RWD 調整 */
+        @media (max-width: 900px) {
+            h1 { font-size: 3rem; }
+            .signature-section { flex-direction: column; }
+            .image-wrapper { height: 400px; border-right: none; border-bottom: 3px solid var(--gold); }
+            .text-box { padding: 3rem 2rem; }
+            .watermark { font-size: 6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-pattern"></div>
+
+    <nav>
+        <span style="color:var(--gold); font-weight:bold; font-size:1.2rem; border-bottom:2px solid var(--crimson-vibrant);">THANH KY</span>
+        <a href="index.html" class="back-btn">← Back to Menu</a>
+    </nav>
+
+    <header class="hero">
+        <img src="images/thanhky_ext.jpg" alt="誠記店面" class="hero-img">
+        
+        <div class="hero-content">
+            <h1>誠記麵食館</h1>
+            <div class="subtitle">Thanh Ky Since 1980</div>
+        </div>
+    </header>
+
+    <section class="signature-section">
+        <div class="image-wrapper">
+            <div class="stamp">BEST<br>PHO</div>
+            <img src="images/thanhky_dish.jpg" alt="誠記招牌河粉" class="signature-img">
+        </div>
+
+        <div class="text-box">
+            <div class="watermark">PHO</div>
+            <h2 class="dish-title">永康街的半世紀傳奇</h2>
+            <p class="dish-desc">
+                從一個小小的麵攤到如今的知名老店，誠記見證了台北永康街的繁華變遷。
+                堅持使用大量牛骨與新鮮蔬果熬製的高湯，清甜中帶著濃郁的肉香，是無數老台北人記憶中的味道。
+            </p>
+            <p class="dish-desc">
+                除了經典河粉，這裡的咖哩更是一絕。濃稠的金黃醬汁，融合了越南香料與椰奶的溫潤，展現出極致的南洋熱情。
+            </p>
+            
+            <div class="highlight-box">
+                <span class="highlight-title">✦ 饕客必點</span>
+                <p>招牌鮮牛肉河粉 / 越式咖哩雞腿麵 / 金錢蝦餅</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="closeup-section">
+        <div class="parallax-bg"></div> <div class="center-card">
+            <h3>慢火熬製的靈魂</h3>
+            <p>
+                近距離感受湯頭的清澈與油脂的光澤。每一滴湯汁都經過長時間的火候淬鍊，
+                搭配口感Q彈的河粉與鮮嫩肉片，這就是誠記五十年來不變的堅持。
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>台北市大安區永康街6巷1號 | 02-2321-1579</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">Copyright © 2025 Vietnam Gold Selection.</p>
+    </footer>
+
+</body>
+</html>

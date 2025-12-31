@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>翠林越南餐廳 - 金味越南</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        :root {
+            --midnight: #101c30;
+            --champagne: #c5a059;
+            --paper: #f0f0f0;
+        }
+
+        body {
+            background-color: var(--midnight);
+            color: var(--paper);
+            font-family: 'Playfair Display', 'Noto Serif TC', serif;
+            margin: 0;
+        }
+
+        /* 裝飾背景：雲紋線條 */
+        .bg-clouds {
+            position: fixed;
+            width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 100% 50%, transparent 20%, rgba(197, 160, 89, 0.03) 21%, rgba(197, 160, 89, 0.03) 34%, transparent 35%, transparent),
+                radial-gradient(circle at 0% 50%, transparent 20%, rgba(197, 160, 89, 0.03) 21%, rgba(197, 160, 89, 0.03) 34%, transparent 35%, transparent);
+            z-index: -1;
+        }
+
+        nav {
+            position: absolute; top: 20px; right: 40px; z-index: 10;
+        }
+        .nav-btn { color: var(--champagne); text-decoration: none; border: 1px solid var(--champagne); padding: 10px 25px; border-radius: 50px; }
+
+        /* Hero */
+        .hero {
+            height: 90vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+        .hero-img-box {
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .hero-img {
+            width: 100%; height: 100%; object-fit: cover;
+            /* 請放入 images/tsuilin_ext.jpg */
+        }
+        .hero-text {
+            padding: 4rem;
+            position: relative;
+        }
+        /* 裝飾：金色垂直線 */
+        .v-line { position: absolute; left: 0; top: 10%; height: 80%; width: 2px; background: var(--champagne); }
+
+        h1 { font-size: 5rem; color: var(--champagne); line-height: 1; margin-bottom: 20px; }
+        .intro { font-size: 1.2rem; line-height: 1.6; opacity: 0.9; }
+
+        /* Dish Section - Moon Gate Style */
+        .dish-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a2a45 0%, var(--midnight) 70%);
+        }
+        .moon-gate-wrapper {
+            width: 400px; height: 400px;
+            margin: 0 auto 3rem;
+            position: relative;
+            border-radius: 50%;
+            border: 2px solid var(--champagne);
+            padding: 10px; /* 雙圈效果 */
+            box-shadow: 0 0 50px rgba(197, 160, 89, 0.2);
+        }
+        .moon-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            /* 請放入 images/tsuilin_dish.jpg */
+            transition: transform 0.6s ease;
+        }
+        .moon-gate-wrapper:hover .moon-img { transform: rotate(5deg) scale(1.1); }
+        
+        h2 { font-size: 2.5rem; color: var(--champagne); margin-bottom: 1rem; }
+        .dish-detail { max-width: 600px; margin: 0 auto; text-align: center; }
+
+        /* Close up Strip */
+        .closeup-strip {
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .strip-img {
+            width: 100%; position: absolute;
+            /* 請放入 images/tsuilin_closeup.jpg */
+            filter: brightness(0.7);
+        }
+        .strip-text {
+            position: relative; z-index: 1; 
+            background: rgba(16, 28, 48, 0.9);
+            padding: 2rem 4rem;
+            margin-left: 10%;
+            border-left: 5px solid var(--champagne);
+        }
+
+        @media (max-width: 768px) {
+            .hero { grid-template-columns: 1fr; height: auto; }
+            .hero-img-box { height: 400px; }
+            h1 { font-size: 3rem; }
+            .moon-gate-wrapper { width: 300px; height: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-clouds"></div>
+    <nav><a href="index.html" class="nav-btn">Home</a></nav>
+
+    <header class="hero">
+        <div class="hero-text">
+            <div class="v-line"></div>
+            <h1>翠林<br>Tsui Lin</h1>
+            <p class="intro">台北經典老字號。<br>自這座城市開始流行越南菜起，翠林便是道地風味的代名詞。沉穩的深藍色調象徵其多年不變的品質承諾。</p>
+        </div>
+        <div class="hero-img-box">
+            <img src="images/tsuilin_ext.jpg" alt="翠林外觀" class="hero-img">
+        </div>
+    </header>
+
+    <section class="dish-section">
+        <div class="moon-gate-wrapper">
+            <img src="images/tsuilin_dish.jpg" alt="翠林招牌菜" class="moon-img">
+        </div>
+        <h2>歲月沉澱的清爽</h2>
+        <div class="dish-detail">
+            <p>翠林的生春捲是許多老饕心中的第一名。剔透的米紙包裹著鮮紅的蝦肉與翠綠生菜，蘸上特製的魚露沾醬，酸甜爽脆。在濃郁的極繁風格中，翠林展現的是一種「留白」的雅緻美味。</p>
+            <p style="color:#aaa; margin-top:1rem;">必點：鮮蝦生春捲、牛肉河粉、炸春捲涼拌米粉。</p>
+        </div>
+    </section>
+
+    <section class="closeup-strip">
+        <img src="images/tsuilin_closeup.jpg" alt="細節" class="strip-img">
+        <div class="strip-text">
+            <h3>經典手藝</h3>
+            <p>簡單，卻不平凡的堅持。</p>
+        </div>
+    </section>
+</body>
+</html>

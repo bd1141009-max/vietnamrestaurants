@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyclo 洛城 - 金味越南</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=Playfair+Display:ital,wght@1,700&display=swap');
+
+        :root {
+            --charcoal: #1f1f1f;
+            --amber: #ffbf00; /* 霓虹琥珀金 */
+            --white: #ffffff;
+        }
+
+        body {
+            background-color: var(--charcoal);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif; /* 現代無襯線字體 */
+            margin: 0;
+        }
+
+        /* 裝飾：幾何線條 Art Deco 風格 */
+        .deco-lines {
+            position: fixed;
+            top: 0; right: 0; width: 300px; height: 100vh;
+            background: repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255, 191, 0, 0.05) 40px, rgba(255, 191, 0, 0.05) 41px);
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            height: 60vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            padding: 4rem;
+        }
+        .header-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            /* 請放入 images/cyclo_ext.jpg */
+            object-fit: cover;
+            opacity: 0.6;
+            z-index: -1;
+        }
+        .title-group { border-bottom: 4px solid var(--amber); padding-bottom: 20px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--amber); margin: 0; font-style: italic; }
+        .subtitle { letter-spacing: 5px; text-transform: uppercase; font-size: 1.2rem; }
+
+        /* Floating Content Block */
+        .content-block {
+            max-width: 1000px;
+            margin: -50px auto 50px;
+            background: #2a2a2a;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            box-shadow: 20px 20px 0 var(--amber); /* 硬陰影風格 */
+        }
+        .food-img {
+            width: 100%; height: 100%; object-fit: cover;
+            /* 請放入 images/cyclo_dish.jpg */
+        }
+        .info { padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
+        
+        h2 { font-size: 2rem; margin-bottom: 1rem; color: var(--amber); }
+        p { line-height: 1.8; color: #ddd; margin-bottom: 2rem; }
+        
+        .btn-back {
+            align-self: flex-start;
+            padding: 10px 30px;
+            border: 2px solid var(--white);
+            color: var(--white);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-back:hover { background: var(--amber); border-color: var(--amber); color: var(--charcoal); }
+
+        /* Full Width Detail */
+        .detail-banner {
+            position: relative;
+            height: 50vh;
+            overflow: hidden;
+        }
+        .detail-img {
+            width: 100%; height: 150%; object-fit: cover;
+            /* 請放入 images/cyclo_closeup.jpg */
+            transform: translateY(-20%);
+        }
+        .caption {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(31, 31, 31, 0.8);
+            padding: 20px;
+            border: 1px solid var(--amber);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--amber);
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 2rem; height: 50vh; }
+            h1 { font-size: 3rem; }
+            .content-block { grid-template-columns: 1fr; margin: 0; box-shadow: none; border-top: 2px solid var(--amber); }
+            .food-img { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="deco-lines"></div>
+
+    <header>
+        <img src="images/cyclo_ext.jpg" alt="Cyclo 裝潢" class="header-bg">
+        <div class="title-group">
+            <h1>CYCLO</h1>
+            <div class="subtitle">American Style Pho</div>
+        </div>
+    </header>
+
+    <section class="content-block">
+        <div class="info">
+            <h2>美式靈魂．琥珀湯頭</h2>
+            <p>Cyclo 洛城將美國加州的越南河粉文化帶回台北。這裡風格摩登現代，宛如時尚餐酒館。</p>
+            <p>不同於傳統的混濁高湯，Cyclo 最自豪的是那如琥珀般剔透的牛骨湯頭，濃郁卻不油膩。您可以自由選擇河粉種類與肉品部位，這是一種現代、客製化且精緻的極繁體驗。</p>
+            <a href="index.html" class="btn-back">Back to Menu</a>
+        </div>
+        <img src="images/cyclo_dish.jpg" alt="洛城牛肉河粉" class="food-img">
+    </section>
+
+    <section class="detail-banner">
+        <img src="images/cyclo_closeup.jpg" alt="琥珀湯頭特寫" class="detail-img">
+        <div class="caption">The Golden Broth</div>
+    </section>
+
+</body>
+</html>
